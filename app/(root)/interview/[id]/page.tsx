@@ -5,9 +5,10 @@ import { getRandomInterviewCover } from "@/lib/utils";
 import DisplayTechIcons from "@/components/DisplayTechIcons";
 import Agent from "@/components/Agent";
 import { getCurrentUser } from "@/lib/actions/auth.action";
+
 const page = async ({ params }: RouteParams) => {
   const { id } = await params;
-  const user = getCurrentUser();
+  const user = await getCurrentUser();
   const interview = await getInterviewById(id);
   if (!interview) redirect("/");
   return (
@@ -30,7 +31,13 @@ const page = async ({ params }: RouteParams) => {
           {interview.type}
         </p>
       </div>
-      <Agent userName={user?.name} type={user?.id} interviewId={id} type='interview' questions={interview.questions}/>
+      <Agent
+         userName={user?.name || ''}
+         userId={user?.id}
+         interviewId={id}
+         type="interview"
+         questions={interview.questions}
+      />
     </>
   );
 };

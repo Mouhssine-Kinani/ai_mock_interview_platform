@@ -5,7 +5,6 @@ import { cookies } from "next/headers";
 
 const ONE_WEEK = 60 * 60 * 24 * 7;
 
-
 // There was an error: FirebaseError: Firebase: Error (auth/api-key-not-valid.-please-pass-a-valid-api-key.).
 export async function SignUp(params: SignUpParams) {
   const { uid, name, email } = params;
