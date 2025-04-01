@@ -52,6 +52,11 @@ const Feedback = async ({ params }: RouteParams) => {
               {feedback?.createdAt
                 ? dayjs(feedback.createdAt).format("MMM D, YYYY h:mm A")
                 : "N/A"}
+              {feedback?.updatedAt && feedback.updatedAt !== feedback.createdAt && (
+                <span className="ml-2 text-primary-200 font-semibold">
+                  (Last retaken: {dayjs(feedback.updatedAt).format("MMM D, YYYY h:mm A")})
+                </span>
+              )}
             </p>
           </div>
         </div>
@@ -101,7 +106,7 @@ const Feedback = async ({ params }: RouteParams) => {
           </Link>
         </Button>
 
-        {/* <Button className="btn-primary flex-1">
+        <Button className="btn-primary flex-1">
           <Link
             href={`/interview/${id}`}
             className="flex w-full justify-center"
@@ -110,7 +115,7 @@ const Feedback = async ({ params }: RouteParams) => {
               Retake Interview
             </p>
           </Link>
-        </Button> */}
+        </Button>
       </div>
     </section>
   );
