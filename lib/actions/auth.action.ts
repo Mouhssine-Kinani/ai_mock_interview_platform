@@ -98,3 +98,9 @@ export async function isAuthenticated() {
   const user = await getCurrentUser();
   return !!user; // true if user is authenticated, false if not
 }
+
+export async function logout() {
+  const cookiesStore = await cookies();
+  cookiesStore.delete("session");
+  return { success: true };
+}
